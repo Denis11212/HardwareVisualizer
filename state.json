@@ -1,0 +1,52 @@
+{
+  "last_run": "2026-03-01T23:14:00Z",
+  "run_id": "22555117181",
+  "monthly_activity_issue": {
+    "number": null,
+    "month": "2026-03",
+    "note": "Created in this run - PR pending (branch test-assist/branch-coverage-gaps)"
+  },
+  "previous_monthly_issue_closed": 1181,
+  "tasks_last_run": {
+    "task1_commands": "2026-03-01",
+    "task2_opportunities": "2026-03-01",
+    "task3_implement": "2026-03-01",
+    "task4_maintain_prs": "2026-03-01",
+    "task7_monthly_summary": "2026-03-01"
+  },
+  "pending_prs": [
+    {
+      "branch": "test-assist/branch-coverage-gaps",
+      "title": "test: add branch coverage for formatter and useUpdater edge cases",
+      "description": "7 new tests; formatter.ts branches 82.35%→100%, useAppUpdate.ts branches 76.92%→92.3%"
+    }
+  ],
+  "merged_prs": [1180, 1186, 1189, 1191, 1193],
+  "commands": {
+    "test": "node_modules/.bin/vitest run --coverage (requires Node >=22; use N_PREFIX=$HOME/.n n 22 to install)",
+    "lint": "npm run lint",
+    "format": "npm run format",
+    "build": "npm run build"
+  },
+  "coverage_baseline": {
+    "date": "2026-03-01",
+    "tests": 277,
+    "test_files": 45,
+    "branch_coverage_after_pr": "~89%+ (estimate)"
+  },
+  "backlog": [
+    {"file": "useTauriDialog.ts", "branches": "66.66%", "lines": "46-61", "priority": "medium"},
+    {"file": "useBurnInShift.ts", "branches": "84.37%", "lines": "61-66,80,92", "priority": "low"},
+    {"file": "useStickyObserver.ts", "branches": "50%", "lines": "19-22", "priority": "low"},
+    {"file": "useMenu.ts", "branches": "50%", "lines": "17", "priority": "low"},
+    {"note": "shared Tauri mock utilities infrastructure", "priority": "needs discussion"}
+  ],
+  "notes": [
+    "Node v20 in CI env but project requires >=22; install via: N_PREFIX=$HOME/.n n 22 && export PATH=$HOME/.n/bin:$PATH",
+    "All test files pass (277 tests in 45 files as of 2026-03-01)",
+    "Vitest + Testing Library for frontend; Cargo tests for Rust backend",
+    "Interval tests wrap vi.advanceTimersByTime in act(async () => {...; await Promise.resolve()})",
+    "Jotai atom tests use useHydrateAtoms wrapper for seeding state",
+    "Tauri API mocks: each test file re-implements individually (no shared factory)"
+  ]
+}
