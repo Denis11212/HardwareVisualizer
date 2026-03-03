@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-03-02T23:14:00Z",
-  "run_id": "22600117252",
+  "last_run": "2026-03-03T23:14:00Z",
+  "run_id": "22647122013",
   "monthly_activity_issue": {
     "number": 1202,
     "month": "2026-03"
@@ -8,16 +8,16 @@
   "previous_monthly_issue_closed": 1181,
   "tasks_last_run": {
     "task1_commands": "2026-03-01",
-    "task2_opportunities": "2026-03-01",
-    "task3_implement": "2026-03-02",
-    "task4_maintain_prs": "2026-03-01",
-    "task7_monthly_summary": "2026-03-02"
+    "task2_opportunities": "2026-03-03",
+    "task3_implement": "2026-03-03",
+    "task4_maintain_prs": "2026-03-03",
+    "task7_monthly_summary": "2026-03-03"
   },
   "pending_prs": [
     {
-      "branch": "test-assist/missing-branch-coverage",
-      "title": "test: add missing branch coverage for useTauriDialog and useMenu",
-      "description": "3 new tests; useTauriDialog.ts branches 66.66%→100%, useMenu.ts branches 50%→100%"
+      "branch": "test-assist/null-guard-coverage",
+      "title": "[Test Improver] test: cover null-guard and observer-attach branches",
+      "description": "2 new tests; useSortableDashboard.ts 83.33%→100% branches, useStickyObserver.ts 50%→100% branches; 280→282 tests"
     }
   ],
   "merged_prs": [1180, 1186, 1189, 1191, 1193, 1201],
@@ -28,24 +28,28 @@
     "build": "npm run build"
   },
   "coverage_baseline": {
-    "date": "2026-03-02",
-    "tests": 280,
+    "date": "2026-03-03",
+    "tests": 282,
     "test_files": 45,
-    "notes": "useTauriDialog.ts 100% branches, useMenu.ts 100% branches after this run"
+    "statements": "97.57%",
+    "branches": "92.09%",
+    "functions": "95.21%",
+    "lines": "98.41%"
   },
   "backlog": [
-    {"file": "useBurnInShift.ts", "branches": "84.37%", "lines": "61-66,80,92", "priority": "low"},
-    {"file": "useStickyObserver.ts", "branches": "50%", "lines": "19-22", "priority": "low"},
+    {"file": "useBurnInShift.ts", "branches": "84.37%", "lines": "61-66,80,92", "priority": "low", "note": "idle-timer guard and jump-mode isIdle guard"},
+    {"file": "useSnapshot.ts", "lines": "237-240", "priority": "investigation", "note": "nearby bucket fallback appears to be dead code: Math.floor alignment means |B-t| is always 0 or >=step, never within 0.5*step tolerance"},
     {"note": "shared Tauri mock utilities infrastructure", "priority": "needs discussion"}
   ],
   "notes": [
     "Node v20 in CI env but project requires >=22; install via: N_PREFIX=$HOME/.n n 22 && export PATH=$HOME/.n/bin:$PATH",
-    "All test files pass (280 tests in 45 files as of 2026-03-02)",
+    "All test files pass (282 tests in 45 files as of 2026-03-03)",
     "Vitest + Testing Library for frontend; Cargo tests for Rust backend",
     "Interval tests wrap vi.advanceTimersByTime in act(async () => {...; await Promise.resolve()})",
     "Jotai atom tests use useHydrateAtoms wrapper for seeding state",
     "Tauri API mocks: each test file re-implements individually (no shared factory)",
     "To override vi.mock factory per-test: import the mocked fn, call vi.mocked(fn).mockImplementation(...) in beforeEach and per-test",
-    "useMenu.test.ts pattern: import useTauriStore, restore default in beforeEach, override with mockImplementation in specific test"
+    "useStickyObserver: to cover observe/unobserve branches, manually set sentinelRef.current = el inside renderHook callback before effect fires",
+    "useSortableDashboard: to cover null guard, use vi.mocked(useTauriStore).mockReturnValueOnce([null, mockSetter])"
   ]
 }
